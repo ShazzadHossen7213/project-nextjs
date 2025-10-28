@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import Link from "next/link";
+import './globals.css';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,14 +20,32 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <header className="bg-gray-300 py-6" >
+              <div className="container mx-auto w-3/4 flex justify-between">
+                <Link href="/" className="flex items-center font-semibold text-3xl text-orange-400">
+                  {/* <img className="w-10 pr-2" src="/img/logo.png" alt="Logo" /> */}
+                  Logo
+                </Link>
+                  <nav className="">
+                      <button id="mobile_icon" className="text-black text-end flex md:hidden">
+                          {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-8">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                          </svg> */}
+                      </button>
+                      <ul id="main_menu" className="absolute bg-gray-300 w-full left-0 top-15 p-4 text-center hidden .md:block md:relative md:top-0 md:flex">
+                          <li className="mb-2 md:mb-0 md:ml-5"><Link href="/" className="text-black font-semibold hover:text-orange-900" >Home</Link></li>
+                          <li className="mb-2 md:mb-0 md:ml-5"><Link href="/about" className="text-black font-semibold hover:text-orange-900">About</Link></li>
+                          <li className="mb-2 md:mb-0 md:ml-5"><Link href="/" className="text-black font-semibold hover:text-orange-900">Log in</Link></li>
+                          <li className="mb-2 md:mb-0 md:ml-5"><Link href="/" className="text-black font-semibold hover:text-orange-900">Sign In</Link></li>
+                      </ul>
+                  </nav>
+              </div>
+          </header>
         {children}
       </body>
     </html>
